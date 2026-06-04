@@ -1,0 +1,150 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}GK Exam 2026 - Home{% endblock %}
+
+{% block content %}
+<style>
+    .hero {
+        background: linear-gradient(135deg, #1a2740 0%, #2c4a7c 100%);
+        color: white;
+        padding: 80px 40px;
+        text-align: center;
+    }
+    .hero h1 { font-size: 48px; margin-bottom: 10px; }
+    .hero h1 span { color: #4fc3f7; }
+    .hero p { font-size: 18px; color: #cfd8dc; margin-bottom: 30px; }
+    .btn-primary {
+        background: #4fc3f7;
+        color: #1a2740;
+        padding: 14px 36px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+        transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #81d4fa; }
+
+    .cards {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        padding: 50px 40px;
+        flex-wrap: wrap;
+    }
+    .card {
+        background: white;
+        border-radius: 10px;
+        padding: 30px;
+        width: 220px;
+        text-align: center;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .card .icon { font-size: 36px; margin-bottom: 12px; }
+    .card h3 { color: #1a2740; margin-bottom: 8px; }
+    .card p { color: #78909c; font-size: 14px; }
+
+    .steps {
+        background: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+    .steps h2 { color: #1a2740; margin-bottom: 35px; font-size: 28px; }
+    .step-list {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+    .step {
+        width: 180px;
+    }
+    .step .num {
+        background: #1a2740;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin: 0 auto 12px;
+    }
+    .step p { color: #546e7a; font-size: 14px; }
+
+    .cta {
+        text-align: center;
+        padding: 60px 40px;
+        background: #f5f6fa;
+    }
+    .cta h2 { font-size: 28px; color: #1a2740; margin-bottom: 10px; }
+    .cta p { color: #78909c; margin-bottom: 25px; }
+</style>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>GK <span>Exam</span> 2026</h1>
+    <p>Test your General Knowledge — Register for the exam at Sunshine Academy</p>
+    <p style="margin-bottom:30px; font-size:15px;"> 15th June 2026 &nbsp;|&nbsp;  Sunshine Academy, Pune &nbsp;|&nbsp;  ₹1000 (Pay offline)</p>
+    <a href="/register/" class="btn-primary">Register Now →</a>
+</section>
+
+<!-- INFO CARDS -->
+<section class="cards">
+    <div class="card">
+        <div class="icon"></div>
+        <h3>Exam Date</h3>
+        <p>15th June 2026</p>
+    </div>
+    <div class="card">
+        <div class="icon"></div>
+        <h3>Center</h3>
+        <p>Sunshine Academy, Pune</p>
+    </div>
+    <div class="card">
+        <div class="icon"></div>
+        <h3>Exam Fee</h3>
+        <p>₹1000 (Pay offline)</p>
+    </div>
+    <div class="card">
+        <div class="icon"></div>
+        <h3>Eligibility</h3>
+        <p>Open to all college students</p>
+    </div>
+</section>
+
+<!-- HOW TO REGISTER -->
+<section class="steps">
+    <h2>How to Register</h2>
+    <div class="step-list">
+        <div class="step">
+            <div class="num">1</div>
+            <h4>Fill the Form</h4>
+            <p>Enter your personal and college details</p>
+        </div>
+        <div class="step">
+            <div class="num">2</div>
+            <h4>Submit</h4>
+            <p>Click submit to complete registration</p>
+        </div>
+        <div class="step">
+            <div class="num">3</div>
+            <h4>Pay Fee</h4>
+            <p>Pay ₹1000 offline at the center</p>
+        </div>
+        <div class="step">
+            <div class="num">4</div>
+            <h4>Get Admit Card</h4>
+            <p>Receive admit card on your email</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Ready to Register?</h2>
+    <p>Seats are limited — secure your spot today!</p>
+    <a href="/register/" class="btn-primary">Register Now →</a>
+</section>
+{% endblock %}
