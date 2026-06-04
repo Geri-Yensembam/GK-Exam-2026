@@ -110,11 +110,13 @@
                     <td>{{ student.year_of_study }}</td>
                     <td>{{ student.gender }}</td>
                     <td>
-                        {% if student.payment_status %}
-                            <span class="badge badge-paid">Paid</span>
-                        {% else %}
-                            <span class="badge badge-pending">Pending</span>
-                        {% endif %}
+                       <a href="/toggle-payment/{{ student.id }}/" style="text-decoration:none;">
+                          {% if student.payment_status %}
+                            <span class="badge badge-paid"> Paid</span>
+                          {% else %}
+                            <span class="badge badge-pending"> Pending</span>
+                          {% endif %}
+                       </a>
                     </td>
                     <td>{{ student.registration_date|date:"d M Y, H:i" }}</td>
                 </tr>
