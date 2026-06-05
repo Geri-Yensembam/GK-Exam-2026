@@ -4,3 +4,4 @@ db.sqlite3
 .env
 venv/
 *.sqlite3
+GK_Exam/settings.py

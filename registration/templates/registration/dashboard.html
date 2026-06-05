@@ -97,6 +97,7 @@
                     <th>Gender</th>
                     <th>Payment</th>
                     <th>Registered On</th>
+                    <th>Admit Card</th>
                 </tr>
             </thead>
             <tbody>
@@ -119,6 +120,16 @@
                        </a>
                     </td>
                     <td>{{ student.registration_date|date:"d M Y, H:i" }}</td>
+                    <td>
+                        {% if student.payment_status %}
+                          <a href="/admit-card/{{ student.id }}/" 
+                             style="background:#1a2740;color:white;padding:5px 10px;border-radius:4px;text-decoration:none;font-size:12px;">
+                             Download
+                          </a>
+                        {% else %}
+                          <span style="color:#ccc;font-size:12px;">Pending payment</span>
+                        {% endif %}
+                    </td>
                 </tr>
                 {% empty %}
                 <tr>
