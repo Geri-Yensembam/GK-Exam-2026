@@ -39,10 +39,23 @@ def toggle_payment(request, student_id):
     student.save()
 
     if student.payment_status:
-        # Generate PDF
+        # Assign roll number if not already assigned
+        if not student.roll_number:
+            last_roll = Student.objects.filter(
+                roll_number__isnull=False
+            ).exclude(roll_number='').order_by('roll_number').last()
+            
+            if last_roll and last_roll.roll_number:
+                last_num = int(last_roll.roll_number)
+                new_roll = str(last_num + 1)
+            else:
+                new_roll = "4601"
+            
+            student.roll_number = new_roll
+            student.save()
+
+        # Generate PDF and send email
         pdf_buffer = generate_admit_card(student)
-        
-        # Create email with attachment
         from django.core.mail import EmailMessage
         email = EmailMessage(
             subject='GK Exam 2026 - Admit Card',
@@ -50,6 +63,8 @@ def toggle_payment(request, student_id):
 Dear {student.full_name},
 
 Your payment has been verified successfully!
+Your Roll Number is: {student.roll_number}
+
 Please find your admit card attached to this email.
 
 Exam Details:
@@ -58,7 +73,7 @@ Exam Details:
 - Time: 10:00 AM
 - Subject: {student.subject}
 
-Please bring the printed admit card and a valid photo ID to the examination center.
+Please bring the printed admit card and a valid photo ID.
 
 Best regards,
 GK Exam 2026 Team
@@ -67,7 +82,6 @@ Sunshine Academy, Pune
             from_email=settings.DEFAULT_FROM_EMAIL,
             to=[student.email],
         )
-        # Attach PDF
         filename = f"AdmitCard_{student.full_name.replace(' ', '_')}.pdf"
         email.attach(filename, pdf_buffer.read(), 'application/pdf')
         email.send(fail_silently=False)
