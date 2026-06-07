@@ -5,3 +5,5 @@ db.sqlite3
 venv/
 *.sqlite3
 GK_Exam/settings.py
+staticfiles/
+media/
