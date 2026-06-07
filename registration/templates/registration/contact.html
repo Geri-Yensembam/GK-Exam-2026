@@ -1,0 +1,295 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+
+{% block title %}Contact Us - Chekla College of Engineering{% endblock %}
+
+{% block content %}
+<style>
+    .page-header {
+        background: linear-gradient(135deg, #1a2740 0%, #2c4a7c 100%);
+        color: white;
+        padding: 60px 40px;
+        text-align: center;
+    }
+    .page-header h1 { font-size: 36px; margin-bottom: 10px; }
+    .page-header p { color: #cfd8dc; font-size: 16px; }
+
+    .contact-section {
+        padding: 60px 80px;
+        display: flex;
+        gap: 50px;
+        background: white;
+    }
+
+    /* CONTACT INFO */
+    .contact-info { flex: 1; }
+    .contact-info h2 { color: #1a2740; font-size: 24px; margin-bottom: 25px; }
+    .info-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 25px;
+        padding: 20px;
+        background: #f5f6fa;
+        border-radius: 10px;
+    }
+    .info-card .icon {
+        font-size: 24px;
+        min-width: 40px;
+        text-align: center;
+    }
+    .info-card h4 { color: #1a2740; margin-bottom: 5px; }
+    .info-card p { color: #546e7a; font-size: 14px; line-height: 1.6; }
+
+    /* CONTACT FORM */
+    .contact-form { flex: 1; }
+    .contact-form h2 { color: #1a2740; font-size: 24px; margin-bottom: 25px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        font-size: 13px;
+        color: #1a2740;
+        margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1px solid #cfd8dc;
+        border-radius: 6px;
+        font-size: 14px;
+        color: #2c3e50;
+        box-sizing: border-box;
+        transition: border 0.2s;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #1a2740;
+    }
+    .form-group textarea { height: 120px; resize: vertical; }
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+        background: #1a2740;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .submit-btn:hover { background: #2c4a7c; }
+    .success-msg {
+        display: none;
+        background: #eafaf1;
+        color: #27ae60;
+        padding: 12px;
+        border-radius: 6px;
+        text-align: center;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    /* MAP */
+    .map-section {
+        padding: 0 80px 60px;
+        background: white;
+    }
+    .map-section h2 { color: #1a2740; font-size: 24px; margin-bottom: 20px; }
+    .map-placeholder {
+        background: linear-gradient(135deg, #1a2740, #2c4a7c);
+        height: 300px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* DEPARTMENTS */
+    .departments {
+        padding: 60px 80px;
+        background: #f5f6fa;
+        text-align: center;
+    }
+    .departments h2 { color: #1a2740; font-size: 24px; margin-bottom: 30px; }
+    .dept-grid {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .dept-card {
+        background: white;
+        padding: 20px 25px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        width: 200px;
+        text-align: left;
+    }
+    .dept-card h4 { color: #1a2740; font-size: 14px; margin-bottom: 5px; }
+    .dept-card p { color: #78909c; font-size: 12px; }
+</style>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+    <h1>Contact Us</h1>
+    <p>We'd love to hear from you — reach out to us anytime</p>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section">
+    <!-- INFO -->
+    <div class="contact-info">
+        <h2>Get In Touch</h2>
+        <div class="info-card">
+            <div class="icon"></div>
+            <div>
+                <h4>Address</h4>
+                <p>Chekla College of Engineering<br>Pune, Maharashtra - 411001</p>
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="icon"></div>
+            <div>
+                <h4>Phone</h4>
+                <p>+91 97742 91089<br>+91 20 1234 5678</p>
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="icon"></div>
+            <div>
+                <h4>Email</h4>
+                <p>cheklacoe@gmail.com</p>
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="icon"></div>
+            <div>
+                <h4>Office Hours</h4>
+                <p>Monday - Saturday: 9:00 AM - 5:00 PM<br>Sunday: Closed</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="contact-form">
+        <h2>Send us a Message</h2>
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number">
+        </div>
+        <div class="form-group">
+            <label>Subject</label>
+            <select id="subject">
+                <option value="">Select a subject</option>
+                <option>Admissions Enquiry</option>
+                <option>Course Information</option>
+                <option>Exam Registration</option>
+                <option>Fee Structure</option>
+                <option>Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Message</label>
+            <textarea id="message" placeholder="Write your message here..."></textarea>
+        </div>
+        <button class="submit-btn" onclick="submitForm()">Send Message →</button>
+        <div class="success-msg" id="successMsg">
+             Message sent successfully! We'll get back to you soon.
+        </div>
+    </div>
+</section>
+
+<!-- DEPARTMENT CONTACTS -->
+<section class="departments">
+    <h2>Department Contacts</h2>
+    <div class="dept-grid">
+        <div class="dept-card">
+            <h4>Computer Engg.</h4>
+            <p>cs@cheklacoe.edu.in</p>
+        </div>
+        <div class="dept-card">
+            <h4>Electrical Engg.</h4>
+            <p>ee@cheklacoe.edu.in</p>
+        </div>
+        <div class="dept-card">
+            <h4>Mechanical Engg.</h4>
+            <p>me@cheklacoe.edu.in</p>
+        </div>
+        <div class="dept-card">
+            <h4>Civil Engg.</h4>
+            <p>ce@cheklacoe.edu.in</p>
+        </div>
+        <div class="dept-card">
+            <h4>Electronics</h4>
+            <p>ete@cheklacoe.edu.in</p>
+        </div>
+        <div class="dept-card">
+            <h4>Chemical Engg.</h4>
+            <p>che@cheklacoe.edu.in</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    function submitForm() {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        if (!name || !email || !message) {
+            alert('Please fill in all required fields!');
+            return;
+        }
+
+        // Show success message
+        document.getElementById('successMsg').style.display = 'block';
+        
+        // Clear form
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('subject').value = '';
+        document.getElementById('message').value = '';
+
+        // Hide after 5 seconds
+        setTimeout(() => {
+            document.getElementById('successMsg').style.display = 'none';
+        }, 5000);
+    }
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.info-card, .dept-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+    });
+</script>
+{% endblock %}

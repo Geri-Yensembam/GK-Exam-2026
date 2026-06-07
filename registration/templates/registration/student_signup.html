@@ -1,0 +1,117 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Student Signup - Chekla College of Engineering{% endblock %}
+
+{% block content %}
+<style>
+    .page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 60px 20px;
+        min-height: 80vh;
+    }
+    .container {
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        width: 450px;
+    }
+    .logo-top {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    .logo-top h2 { color: #1a2740; font-size: 22px; }
+    .logo-top p { color: #78909c; font-size: 13px; }
+    label {
+        display: block;
+        font-weight: bold;
+        font-size: 13px;
+        color: #1a2740;
+        margin-bottom: 5px;
+        margin-top: 15px;
+    }
+    input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #cfd8dc;
+        border-radius: 6px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+    input:focus { outline: none; border-color: #1a2740; }
+    .btn {
+        width: 100%;
+        padding: 12px;
+        background: #1a2740;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background 0.2s;
+    }
+    .btn:hover { background: #2c4a7c; }
+    .error {
+        background: #fdf2f2;
+        color: #e74c3c;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin-top: 15px;
+        text-align: center;
+    }
+    .info-box {
+        background: #eaf4fb;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+    .login-link {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 13px;
+        color: #78909c;
+    }
+    .login-link a { color: #1a2740; font-weight: bold; text-decoration: none; }
+</style>
+
+<div class="page">
+    <div class="container">
+        <div class="logo-top">
+            <h2>Create Student Account</h2>
+            <p>Chekla College of Engineering</p>
+        </div>
+
+        <div class="info-box">
+             Your PRN number was sent to your email after payment confirmation. Use it to create your account.
+        </div>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <label>PRN Number</label>
+            <input type="text" name="prn_number" placeholder="e.g. CHE-2026-001" required>
+
+            <label>Create Password</label>
+            <input type="password" name="password" placeholder="Enter a strong password" required>
+
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" placeholder="Re-enter your password" required>
+
+            <button type="submit" class="btn">Create Account →</button>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="/student-login/">Login here</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

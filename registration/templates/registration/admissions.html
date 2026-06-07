@@ -1,0 +1,285 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+
+{% block title %}Admissions - Chekla College of Engineering{% endblock %}
+
+{% block content %}
+<style>
+    .page-header {
+        background: linear-gradient(135deg, #1a2740 0%, #2c4a7c 100%);
+        color: white;
+        padding: 60px 40px;
+        text-align: center;
+    }
+    .page-header h1 { font-size: 36px; margin-bottom: 10px; }
+    .page-header p { color: #cfd8dc; font-size: 16px; }
+
+    .admission-layout {
+        display: flex;
+        gap: 40px;
+        padding: 60px 80px;
+        background: #f5f6fa;
+    }
+
+    /* INFO SIDE */
+    .admission-info { flex: 1; }
+    .admission-info h2 { color: #1a2740; font-size: 24px; margin-bottom: 20px; }
+    .info-box {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .info-box h4 { color: #1a2740; margin-bottom: 10px; font-size: 15px; }
+    .info-box ul { padding-left: 18px; color: #546e7a; font-size: 13px; line-height: 2; }
+    .fee-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .fee-table th { background: #1a2740; color: white; padding: 8px 12px; text-align: left; }
+    .fee-table td { padding: 8px 12px; border-bottom: 1px solid #ecf0f1; color: #2c3e50; }
+
+    /* FORM SIDE */
+    .admission-form { flex: 1.5; }
+    .admission-form h2 { color: #1a2740; font-size: 24px; margin-bottom: 20px; }
+    .form-container {
+        background: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .form-row { display: flex; gap: 15px; }
+    .form-row .form-group { flex: 1; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        font-size: 13px;
+        color: #1a2740;
+        margin-bottom: 5px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 9px 12px;
+        border: 1px solid #cfd8dc;
+        border-radius: 6px;
+        font-size: 14px;
+        color: #2c3e50;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #1a2740;
+    }
+    .form-group textarea { height: 80px; resize: vertical; }
+    .errorlist { color: #e74c3c; font-size: 12px; margin: 3px 0 0 0; padding-left: 15px; }
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+        background: #1a2740;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin-top: 10px;
+    }
+    .submit-btn:hover { background: #2c4a7c; }
+
+    /* STEPS */
+    .steps-section {
+        padding: 50px 80px;
+        background: white;
+        text-align: center;
+    }
+    .steps-section h2 { color: #1a2740; font-size: 24px; margin-bottom: 30px; }
+    .steps-grid { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .step-card {
+        background: #f5f6fa;
+        border-radius: 10px;
+        padding: 20px;
+        width: 160px;
+        text-align: center;
+    }
+    .step-card .num {
+        background: #1a2740;
+        color: white;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin: 0 auto 10px;
+    }
+    .step-card h4 { color: #1a2740; font-size: 13px; margin-bottom: 5px; }
+    .step-card p { color: #78909c; font-size: 12px; }
+</style>
+
+<!-- HEADER -->
+<section class="page-header">
+    <h1>Admissions 2026-27</h1>
+    <p>Apply now for undergraduate and postgraduate engineering programs</p>
+</section>
+
+<!-- MAIN LAYOUT -->
+<section class="admission-layout">
+    <!-- INFO -->
+    <div class="admission-info">
+        <h2>Admission Info</h2>
+        <div class="info-box">
+            <h4>Eligibility</h4>
+            <ul>
+                <li>B.E. — 10+2 with PCM, min 45%</li>
+                <li>M.E. — B.E./B.Tech, min 50%</li>
+                <li>Valid MHT-CET / JEE / GATE score</li>
+            </ul>
+        </div>
+        <div class="info-box">
+            <h4>Fee Structure</h4>
+            <table class="fee-table">
+                <thead>
+                    <tr><th>Program</th><th>Annual Fee</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>B.E. (All branches)</td><td>₹85,000</td></tr>
+                    <tr><td>M.E. (All branches)</td><td>₹95,000</td></tr>
+                    <tr><td>Application Fee</td><td>₹500</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="info-box">
+            <h4>Important Dates</h4>
+            <ul>
+                <li>Last date to apply: 30th June 2026</li>
+                <li>Merit list: 15th July 2026</li>
+                <li>Classes begin: 1st August 2026</li>
+            </ul>
+        </div>
+        <div class="info-box">
+            <h4>Contact Admissions</h4>
+            <ul>
+                <li>+91 97742 91089</li>
+                <li>cheklacoe@gmail.com</li>
+                <li>Mon-Sat: 9AM - 5PM</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="admission-form">
+        <h2>Apply Now</h2>
+        <div class="form-container">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        {{ form.full_name }}
+                        {{ form.full_name.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        {{ form.date_of_birth }}
+                        {{ form.date_of_birth.errors }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email</label>
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        {{ form.phone }}
+                        {{ form.phone.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Program Applying For</label>
+                    {{ form.program }}
+                    {{ form.program.errors }}
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>10th Percentage</label>
+                        {{ form.tenth_percentage }}
+                        {{ form.tenth_percentage.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label>12th Percentage</label>
+                        {{ form.twelfth_percentage }}
+                        {{ form.twelfth_percentage.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label>Entrance Score</label>
+                        {{ form.entrance_score }}
+                        {{ form.entrance_score.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    {{ form.address }}
+                    {{ form.address.errors }}
+                </div>
+                <button type="submit" class="submit-btn">Submit Application →</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- STEPS -->
+<section class="steps-section">
+    <h2>What Happens Next?</h2>
+    <div class="steps-grid">
+        <div class="step-card">
+            <div class="num">1</div>
+            <h4>Application Received</h4>
+            <p>We review your application</p>
+        </div>
+        <div class="step-card">
+            <div class="num">2</div>
+            <h4>Document Check</h4>
+            <p>Verify your documents</p>
+        </div>
+        <div class="step-card">
+            <div class="num">3</div>
+            <h4>Merit List</h4>
+            <p>Check your selection status</p>
+        </div>
+        <div class="step-card">
+            <div class="num">4</div>
+            <h4>Pay Fee</h4>
+            <p>Pay ₹500 application fee offline</p>
+        </div>
+        <div class="step-card">
+            <div class="num">5</div>
+            <h4>Confirmed!</h4>
+            <p>Get your admission letter</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.info-box, .step-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+    });
+</script>
+{% endblock %}

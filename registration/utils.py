@@ -19,11 +19,11 @@ def generate_admit_card(student):
 
     # Header text
     p.setFillColor(colors.white)
-    p.setFont("Helvetica-Bold", 30)
-    p.drawCentredString(width/2, height - 50, "GK EXAM 2026")
-    p.setFont("Helvetica", 13)
-    p.drawCentredString(width/2, height - 75, "Sunshine Academy, Pune")
-    p.setFont("Helvetica-Bold", 11)
+    p.setFont("Helvetica-Bold", 25)
+    p.drawCentredString(width/2, height - 50, "CHEKLA COLLEGE OF ENGINEERING")
+    p.setFont("Helvetica", 16)
+    p.drawCentredString(width/2, height - 75, "GK Exam 2026")
+    p.setFont("Helvetica-Bold", 13)
     p.setFillColor(colors.HexColor('#4fc3f7'))
     p.drawCentredString(width/2, height - 100, "ADMIT CARD")
 
@@ -92,7 +92,7 @@ def generate_admit_card(student):
     p.setFillColor(colors.white)
     p.setFont("Helvetica", 10)
     p.drawCentredString(width/2, height - 563, 
-        "Date: 15th June 2026   |   Center: Sunshine Academy, Pune   |   Time: 10:00 AM")
+        "Date: 15th June 2026   |   Center: Chekla College of Engineering, Pune   |   Time: 10:00 AM")
 
     # Footer
     p.setFillColor(colors.HexColor('#1a2740'))
@@ -100,7 +100,7 @@ def generate_admit_card(student):
     p.setFillColor(colors.white)
     p.setFont("Helvetica", 9)
     p.drawCentredString(width/2, 25, 
-        "Computer generated admit card | GK Exam 2026 | Sunshine Academy, Pune")
+        "Computer generated admit card | GK Exam 2026 | Chekla College of Engineering, Pune")
     p.setFont("Helvetica", 8)
     p.setFillColor(colors.HexColor('#4fc3f7'))
     p.drawCentredString(width/2, 10, 

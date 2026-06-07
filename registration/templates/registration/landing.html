@@ -1,18 +1,73 @@
 {% extends 'registration/base.html' %}
+{% load static %}
 
-{% block title %}GK Exam 2026 - Home{% endblock %}
+{% block title %}Chekla College of Engineering - Home{% endblock %}
 
 {% block content %}
 <style>
-    .hero {
-        background: linear-gradient(135deg, #1a2740 0%, #2c4a7c 100%);
-        color: white;
-        padding: 80px 40px;
-        text-align: center;
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+    /* TOP ANNOUNCEMENT BAR */
+    .top-bar {
+        background: #1a2740;
+        color: #cfd8dc;
+        padding: 8px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
     }
-    .hero h1 { font-size: 48px; margin-bottom: 10px; }
-    .hero h1 span { color: #4fc3f7; }
-    .hero p { font-size: 18px; color: #cfd8dc; margin-bottom: 30px; }
+    .top-bar a {
+        color: #4fc3f7;
+        text-decoration: none;
+        margin-left: 20px;
+    }
+    .top-bar a:hover { color: white; }
+
+    /* HERO */
+    .hero {
+        position: relative;
+        height: 92vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+    }
+    .hero-bg {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-image: url("{% static 'registration/campus.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.45);
+    }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        color: white;
+        padding: 20px;
+    }
+    .hero-logo {
+        height: 120px;
+        margin-bottom: 20px;
+        filter: brightness(0) invert(1);
+    }
+    .hero-content h1 {
+        font-size: 52px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+    .hero-content h1 span { color: #4fc3f7; }
+    .hero-content p {
+        font-size: 18px;
+        color: #cfd8dc;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+    .hero-btns { display: flex; gap: 15px; justify-content: center; }
     .btn-primary {
         background: #4fc3f7;
         color: #1a2740;
@@ -24,127 +79,258 @@
         transition: background 0.2s;
     }
     .btn-primary:hover { background: #81d4fa; }
+    .btn-secondary {
+        background: transparent;
+        color: white;
+        padding: 14px 36px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 16px;
+        border: 2px solid white;
+        transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
 
-    .cards {
+    /* SCROLL DOWN ARROW */
+    .scroll-down {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-size: 24px;
+        animation: bounce 2s infinite;
+        cursor: pointer;
+        z-index: 2;
+    }
+    @keyframes bounce {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* STATS */
+    .stats {
+        display: flex;
+        justify-content: center;
+        background: #1a2740;
+        padding: 25px 40px;
+    }
+    .stat {
+        text-align: center;
+        padding: 10px 50px;
+        border-right: 1px solid #2c4a7c;
+    }
+    .stat:last-child { border-right: none; }
+    .stat h3 { color: #4fc3f7; font-size: 28px; }
+    .stat p { color: #cfd8dc; font-size: 13px; }
+
+    /* ABOUT */
+    .about {
+        padding: 70px 80px;
+        display: flex;
+        gap: 50px;
+        align-items: center;
+        background: white;
+    }
+    .about-text h2 { color: #1a2740; font-size: 32px; margin-bottom: 15px; }
+    .about-text p { color: #546e7a; line-height: 1.8; margin-bottom: 15px; font-size: 15px; }
+    .about-img {
+        width: 450px;
+        height: 280px;
+        border-radius: 10px;
+        overflow: hidden;
+        flex-shrink: 0;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    .about-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* COURSES */
+    .courses {
+        padding: 70px 40px;
+        text-align: center;
+        background: #f5f6fa;
+    }
+    .courses h2 { color: #1a2740; font-size: 32px; margin-bottom: 10px; }
+    .courses p { color: #78909c; margin-bottom: 35px; font-size: 15px; }
+    .course-grid {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .course-card {
+        background: white;
+        border-radius: 10px;
+        padding: 25px 20px;
+        width: 180px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+        transition: transform 0.2s, box-shadow 0.2s;
+        border-top: 4px solid #1a2740;
+    }
+    .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(26,39,64,0.15);
+    }
+    .course-card .icon { font-size: 35px; margin-bottom: 10px; }
+    .course-card h4 { color: #1a2740; font-size: 14px; }
+
+    /* EXAM BANNER */
+    .exam-banner {
+        background: linear-gradient(135deg, #2c4a7c, #1a2740);
+        color: white;
+        padding: 60px 40px;
+        text-align: center;
+    }
+    .exam-banner h2 { font-size: 32px; margin-bottom: 10px; }
+    .exam-banner p { color: #cfd8dc; margin-bottom: 25px; font-size: 15px; }
+
+    /* WHY US */
+    .why-us {
+        padding: 70px 40px;
+        text-align: center;
+        background: white;
+    }
+    .why-us h2 { color: #1a2740; font-size: 32px; margin-bottom: 35px; }
+    .why-grid {
         display: flex;
         justify-content: center;
         gap: 25px;
-        padding: 50px 40px;
         flex-wrap: wrap;
     }
-    .card {
-        background: white;
-        border-radius: 10px;
-        padding: 30px;
+    .why-card {
         width: 220px;
-        text-align: center;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    }
-    .card .icon { font-size: 36px; margin-bottom: 12px; }
-    .card h3 { color: #1a2740; margin-bottom: 8px; }
-    .card p { color: #78909c; font-size: 14px; }
-
-    .steps {
-        background: white;
-        padding: 50px 40px;
-        text-align: center;
-    }
-    .steps h2 { color: #1a2740; margin-bottom: 35px; font-size: 28px; }
-    .step-list {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        flex-wrap: wrap;
-    }
-    .step {
-        width: 180px;
-    }
-    .step .num {
-        background: #1a2740;
-        color: white;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        margin: 0 auto 12px;
-    }
-    .step p { color: #546e7a; font-size: 14px; }
-
-    .cta {
-        text-align: center;
-        padding: 60px 40px;
+        padding: 25px;
+        border-radius: 10px;
         background: #f5f6fa;
+        transition: transform 0.2s;
     }
-    .cta h2 { font-size: 28px; color: #1a2740; margin-bottom: 10px; }
-    .cta p { color: #78909c; margin-bottom: 25px; }
+    .why-card:hover { transform: translateY(-5px); }
+    .why-card .icon { font-size: 35px; margin-bottom: 12px; }
+    .why-card h4 { color: #1a2740; margin-bottom: 8px; }
+    .why-card p { color: #78909c; font-size: 13px; }
 </style>
 
 <!-- HERO -->
 <section class="hero">
-    <h1>GK <span>Exam</span> 2026</h1>
-    <p>Test your General Knowledge — Register for the exam at Sunshine Academy</p>
-    <p style="margin-bottom:30px; font-size:15px;"> 15th June 2026 &nbsp;|&nbsp;  Sunshine Academy, Pune &nbsp;|&nbsp;  ₹1000 (Pay offline)</p>
+    <div class="hero-bg"></div>
+    <!-- College name top left -->
+<div style="position:absolute; top:30px; left:40px; z-index:3; text-align:left;">
+    <h1 style="font-size:50px; font-weight:700; color:white; text-shadow:2px 2px 8px rgba(0,0,0,0.5); font-family:'Merriweather', serif; letter-spacing:1px;">
+        Chekla College of <span style="color:#4fc3f7;">Engineering</span>
+    </h1>
+</div>
+
+<!-- Buttons in center -->
+<div class="hero-content">
+    <p>Empowering future engineers with world-class education and innovation</p>
+    <div class="hero-btns">
+        <a href="/admissions/" class="btn-primary">Apply for Admission →</a>
+        <a href="/courses/" class="btn-secondary">Explore Courses</a>
+    </div>
+</div>
+    <div class="scroll-down" onclick="document.querySelector('.stats').scrollIntoView({behavior:'smooth'})">
+        ▼
+    </div>
+</section>
+</section>
+
+<!-- LOGO CIRCLE -->
+<div style="text-align:center; margin-top:-70px; position:relative; z-index:10;">
+    <div style="background:white; border-radius:50%; width:200px; height:200px; margin:0 auto; display:flex; align-items:center; justify-content:center; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border: 4px solid #f5f6fa; overflow:hidden;">
+       <img src="{% static 'registration/logo.png' %}" alt="Chekla COE" style="width:180px; height:180px; object-fit:contain;">
+    </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+    <div class="about-text">
+        <h2>About Chekla College of Engineering</h2>
+        <p>Chekla College of Engineering is a premier institution dedicated to providing quality technical education. Established with a vision to produce world-class engineers, we combine academic excellence with practical learning.</p>
+        <p>Our state-of-the-art facilities, experienced faculty, and industry connections ensure that our students are well-prepared for the challenges of the modern world.</p>
+        <a href="/admissions/" class="btn-primary" style="display:inline-block; margin-top:10px;">Learn More →</a>
+    </div>
+    <div class="about-img">
+        <img src="{% static 'registration/campus.jpg' %}" alt="Campus">
+    </div>
+</section>
+
+<!-- COURSES -->
+<section class="courses">
+    <h2>Our Engineering Programs</h2>
+    <p>Choose from a wide range of undergraduate and postgraduate programs</p>
+    <div class="course-grid">
+        <div class="course-card"><div class="icon"></div><h4>Computer Engineering</h4></div>
+        <div class="course-card"><div class="icon"></div><h4>Electrical Engineering</h4></div>
+        <div class="course-card"><div class="icon"></div><h4>Mechanical Engineering</h4></div>
+        <div class="course-card"><div class="icon"></div><h4>Civil Engineering</h4></div>
+        <div class="course-card"><div class="icon"></div><h4>Electronics & Telecom</h4></div>
+        <div class="course-card"><div class="icon"></div><h4>Chemical Engineering</h4></div>
+    </div>
+    <a href="/courses/" class="btn-primary" style="display:inline-block; margin-top:30px;">View All Courses →</a>
+</section>
+
+<!-- EXAM BANNER -->
+<section class="exam-banner">
+    <h2>GK Exam 2026</h2>
+    <p>Register for our General Knowledge Examination!</p>
+    <p style="margin-bottom:25px;">15th June 2026 &nbsp;|&nbsp; Chekla College of Engineering</p>
     <a href="/register/" class="btn-primary">Register Now →</a>
 </section>
 
-<!-- INFO CARDS -->
-<section class="cards">
-    <div class="card">
-        <div class="icon"></div>
-        <h3>Exam Date</h3>
-        <p>15th June 2026</p>
-    </div>
-    <div class="card">
-        <div class="icon"></div>
-        <h3>Center</h3>
-        <p>Sunshine Academy, Pune</p>
-    </div>
-    <div class="card">
-        <div class="icon"></div>
-        <h3>Exam Fee</h3>
-        <p>₹1000 (Pay offline)</p>
-    </div>
-    <div class="card">
-        <div class="icon"></div>
-        <h3>Eligibility</h3>
-        <p>Open to all college students</p>
+<!-- WHY US -->
+<section class="why-us">
+    <h2>Why Choose Chekla COE?</h2>
+    <div class="why-grid">
+        <div class="why-card"><div class="icon"></div><h4>NAAC Accredited</h4><p>Recognized for academic excellence</p></div>
+        <div class="why-card"><div class="icon"></div><h4>Industry Tie-ups</h4><p>Partnerships with top companies</p></div>
+        <div class="why-card"><div class="icon"></div><h4>Modern Labs</h4><p>State-of-the-art facilities</p></div>
+        <div class="why-card"><div class="icon"></div><h4>100% Placement</h4><p>Career support for all students</p></div>
     </div>
 </section>
 
-<!-- HOW TO REGISTER -->
-<section class="steps">
-    <h2>How to Register</h2>
-    <div class="step-list">
-        <div class="step">
-            <div class="num">1</div>
-            <h4>Fill the Form</h4>
-            <p>Enter your personal and college details</p>
-        </div>
-        <div class="step">
-            <div class="num">2</div>
-            <h4>Submit</h4>
-            <p>Click submit to complete registration</p>
-        </div>
-        <div class="step">
-            <div class="num">3</div>
-            <h4>Pay Fee</h4>
-            <p>Pay ₹1000 offline at the center</p>
-        </div>
-        <div class="step">
-            <div class="num">4</div>
-            <h4>Get Admit Card</h4>
-            <p>Receive admit card on your email</p>
-        </div>
-    </div>
-</section>
+<script>
+    // Counter animation
+    const counters = document.querySelectorAll('.counter');
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = parseInt(entry.target.dataset.target);
+                const suffix = target >= 1000 ? '+' : '+';
+                let count = 0;
+                const increment = target / 60;
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        count = target;
+                        clearInterval(timer);
+                    }
+                    entry.target.textContent = Math.floor(count) + suffix;
+                }, 20);
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    counters.forEach(counter => statsObserver.observe(counter));
 
-<!-- CTA -->
-<section class="cta">
-    <h2>Ready to Register?</h2>
-    <p>Seats are limited — secure your spot today!</p>
-    <a href="/register/" class="btn-primary">Register Now →</a>
-</section>
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.about, .courses, .why-us, .exam-banner, .course-card, .why-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+</script>
 {% endblock %}

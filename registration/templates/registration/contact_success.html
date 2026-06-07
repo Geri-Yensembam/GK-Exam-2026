@@ -1,0 +1,58 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Message Sent - Chekla College of Engineering{% endblock %}
+
+{% block content %}
+<style>
+    .page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 60px 20px;
+    }
+    .container {
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        text-align: center;
+        width: 480px;
+    }
+    .icon { font-size: 60px; margin-bottom: 15px; }
+    h1 { color: #27ae60; margin-bottom: 10px; }
+    p { color: #555; font-size: 15px; }
+    .info {
+        background: #eafaf1;
+        padding: 15px;
+        border-radius: 6px;
+        margin: 20px 0;
+        font-size: 14px;
+    }
+    .info p { margin: 6px 0; color: #2c3e50; }
+    .btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 28px;
+        background: #1a2740;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 15px;
+    }
+    .btn:hover { background: #2c4a7c; }
+</style>
+
+<div class="page">
+    <div class="container">
+        <div class="icon"></div>
+        <h1>Message Sent!</h1>
+        <p>Thank you for contacting <strong>Chekla College of Engineering</strong></p>
+        <div class="info">
+            <p> We'll reply to your email within 24 hours</p>
+            <p> For urgent queries call: +91 97742 91089</p>
+            <p> Office hours: Mon-Sat, 9AM - 5PM</p>
+        </div>
+        <a href="/" class="btn">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

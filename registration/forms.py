@@ -1,5 +1,7 @@
 from django import forms
 from .models import Student
+from .models import Student, AdmissionApplication
+from django.forms.widgets import DateInput
 
 class StudentRegistrationForm(forms.ModelForm):
     
@@ -17,9 +19,9 @@ class StudentRegistrationForm(forms.ModelForm):
     ]
     
     SUBJECT_CHOICES = [
-        ('English', 'English'),
-        ('Maths', 'Maths'),
         ('Computer Science', 'Computer Science'),
+        ('Mathematics', 'Mathematics'),
+        ('Physics', 'Physics'),
     ]
 
     year_of_study = forms.ChoiceField(choices=YEAR_CHOICES)
@@ -38,3 +40,13 @@ class StudentRegistrationForm(forms.ModelForm):
             'gender',
             'subject',
         ]
+
+class AdmissionApplicationForm(forms.ModelForm):
+    date_of_birth = forms.DateField(
+        widget=DateInput(attrs={'type': 'date'}),
+    )
+    class Meta:
+        model = AdmissionApplication
+        fields = ['full_name', 'email', 'phone', 'date_of_birth', 
+                  'program', 'tenth_percentage', 'twelfth_percentage', 
+                  'entrance_score', 'address']

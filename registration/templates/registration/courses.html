@@ -1,0 +1,271 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+
+{% block title %}Courses - Chekla College of Engineering{% endblock %}
+
+{% block content %}
+<style>
+    .page-header {
+        background: linear-gradient(135deg, #1a2740 0%, #2c4a7c 100%);
+        color: white;
+        padding: 60px 40px;
+        text-align: center;
+    }
+    .page-header h1 { font-size: 36px; margin-bottom: 10px; }
+    .page-header p { color: #cfd8dc; font-size: 16px; }
+
+    .courses-section {
+        padding: 60px 80px;
+        background: #f5f6fa;
+    }
+    .courses-section h2 {
+        color: #1a2740;
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+    .courses-section p {
+        color: #78909c;
+        margin-bottom: 35px;
+    }
+    .course-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+    }
+    .course-card {
+        background: white;
+        border-radius: 10px;
+        padding: 30px;
+        width: calc(33% - 20px);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+        transition: transform 0.2s, box-shadow 0.2s;
+        border-top: 4px solid #1a2740;
+    }
+    .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(26,39,64,0.15);
+    }
+    .course-card .icon { font-size: 40px; margin-bottom: 15px; }
+    .course-card h3 { color: #000000; margin-bottom: 10px; font-size: 18px; }
+    .course-card p { color: #000000; font-size: 14px; line-height: 1.7; margin-bottom: 15px; }
+    .course-card .details {
+        display: flex;
+        gap: 15px;
+        font-size: 12px;
+        color: #000000;
+        border-top: 1px solid #ecf0f1;
+        padding-top: 12px;
+    }
+    .course-card .details span { display: flex; align-items: center; gap: 4px; }
+    .btn-apply {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 8px 18px;
+        background: #1a2740;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 13px;
+        transition: background 0.2s;
+    }
+    .btn-apply:hover { background: #2c4a7c; }
+
+    /* PG SECTION */
+    .pg-section {
+        padding: 60px 80px;
+        background: white;
+    }
+    .pg-section h2 { color: #1a2740; font-size: 28px; margin-bottom: 10px; }
+    .pg-section p { color: #78909c; margin-bottom: 35px; }
+    .pg-grid {
+        display: flex;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+    .pg-card {
+        background: #f5f6fa;
+        border-radius: 10px;
+        padding: 25px;
+        width: calc(50% - 15px);
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .pg-card .icon { font-size: 30px; }
+    .pg-card h4 { color: #1a2740; margin-bottom: 5px; }
+    .pg-card p { color: #546e7a; font-size: 13px; }
+
+    /* FACILITIES */
+    .facilities {
+        padding: 60px 80px;
+        background: #1a2740;
+        text-align: center;
+    }
+    .facilities h2 { color: white; font-size: 28px; margin-bottom: 10px; }
+    .facilities p { color: #cfd8dc; margin-bottom: 35px; }
+    .fac-grid {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .fac-card {
+        background: rgba(255,255,255,0.1);
+        border-radius: 10px;
+        padding: 25px 20px;
+        width: 160px;
+        color: white;
+    }
+    .fac-card .icon { font-size: 35px; margin-bottom: 10px; }
+    .fac-card p { font-size: 13px; color: #cfd8dc; }
+</style>
+
+<!-- HEADER -->
+<section class="page-header">
+    <h1>Our Engineering Programs</h1>
+    <p>World-class education across 6 departments with industry-ready curriculum</p>
+</section>
+
+<!-- UG COURSES -->
+<section class="courses-section">
+    <h2>Undergraduate Programs (B.E.)</h2>
+    <p>4-year full-time programs affiliated to Savitribai Phule Pune University</p>
+    <div class="course-grid">
+        <div class="course-card">
+            <div class="icon"></div>
+            <h3>Computer Engineering</h3>
+            <p>Learn software development, AI, machine learning, data structures and modern computing technologies.</p>
+            <div class="details">
+                <span>B.E.</span>
+                <span>4 Years</span>
+                <span>60 Seats</span>
+            </div>
+            <a href="/admissions/" class="btn-apply">Apply Now</a>
+        </div>
+        <div class="course-card">
+            <div class="icon"></div>
+            <h3>Electrical Engineering</h3>
+            <p>Study power systems, electrical machines, control systems and renewable energy technologies.</p>
+            <div class="details">
+                <span>B.E.</span>
+                <span>4 Years</span>
+                <span>60 Seats</span>
+            </div>
+            <a href="/admissions/" class="btn-apply">Apply Now</a>
+        </div>
+        <div class="course-card">
+            <div class="icon"></div>
+            <h3>Mechanical Engineering</h3>
+            <p>Explore thermodynamics, manufacturing, CAD/CAM, robotics and industrial automation.</p>
+            <div class="details">
+                <span>B.E.</span>
+                <span>4 Years</span>
+                <span>60 Seats</span>
+            </div>
+            <a href="/admissions/" class="btn-apply">Apply Now</a>
+        </div>
+        <div class="course-card">
+            <div class="icon"></div>
+            <h3>Civil Engineering</h3>
+            <p>Master structural design, construction management, surveying and environmental engineering.</p>
+            <div class="details">
+                <span>B.E.</span>
+                <span>4 Years</span>
+                <span>60 Seats</span>
+            </div>
+            <a href="/admissions/" class="btn-apply">Apply Now</a>
+        </div>
+        <div class="course-card">
+            <div class="icon"></div>
+            <h3>Electronics & Telecom</h3>
+            <p>Study communication systems, VLSI design, embedded systems and signal processing.</p>
+            <div class="details">
+                <span>B.E.</span>
+                <span>4 Years</span>
+                <span>60 Seats</span>
+            </div>
+            <a href="/admissions/" class="btn-apply">Apply Now</a>
+        </div>
+        <div class="course-card">
+            <div class="icon"></div>
+            <h3>Chemical Engineering</h3>
+            <p>Learn chemical processes, reaction engineering, thermodynamics and industrial chemistry.</p>
+            <div class="details">
+                <span>B.E.</span>
+                <span>4 Years</span>
+                <span>60 Seats</span>
+            </div>
+            <a href="/admissions/" class="btn-apply">Apply Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- PG COURSES -->
+<section class="pg-section">
+    <h2>Postgraduate Programs (M.E.)</h2>
+    <p>2-year specialized programs for advanced technical education</p>
+    <div class="pg-grid">
+        <div class="pg-card">
+            <div class="icon"></div>
+            <div>
+                <h4>M.E. Computer Engineering</h4>
+                <p>Advanced topics in AI, machine learning, cloud computing and cybersecurity.</p>
+            </div>
+        </div>
+        <div class="pg-card">
+            <div class="icon"></div>
+            <div>
+                <h4>M.E. Mechanical Engineering</h4>
+                <p>Specialization in design engineering, thermal engineering and manufacturing.</p>
+            </div>
+        </div>
+        <div class="pg-card">
+            <div class="icon"></div>
+            <div>
+                <h4>M.E. Electrical Engineering</h4>
+                <p>Advanced power systems, smart grid technology and energy management.</p>
+            </div>
+        </div>
+        <div class="pg-card">
+            <div class="icon"></div>
+            <div>
+                <h4>M.E. Electronics & Telecom</h4>
+                <p>Advanced VLSI design, wireless communications and embedded systems.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FACILITIES -->
+<section class="facilities">
+    <h2>World-Class Facilities</h2>
+    <p>Everything you need for a complete engineering education</p>
+    <div class="fac-grid">
+        <div class="fac-card"><div class="icon"></div><p>Computer Labs</p></div>
+        <div class="fac-card"><div class="icon"></div><p>Digital Library</p></div>
+        <div class="fac-card"><div class="icon"></div><p>Research Labs</p></div>
+        <div class="fac-card"><div class="icon"></div><p>Sports Complex</p></div>
+        <div class="fac-card"><div class="icon"></div><p>Canteen</p></div>
+        <div class="fac-card"><div class="icon"></div><p>Transport</p></div>
+    </div>
+</section>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.course-card, .pg-card, .fac-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+    });
+</script>
+{% endblock %}
