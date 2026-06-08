@@ -30,6 +30,11 @@
             text-decoration: none;
         }
         .logo span { color: #4fc3f7; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
         .nav-links a {
             color: #cfd8dc;
             text-decoration: none;
@@ -52,9 +57,29 @@
             margin-left: 25px;
             border-bottom: none !important;
         }
-        .nav-links .btn-register:hover {
-            background: #81d4fa;
+        .nav-links .btn-register:hover { background: #81d4fa; }
+
+        /* HAMBURGER */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 5px;
         }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
         /* FOOTER */
         footer {
@@ -94,11 +119,56 @@
 
         /* MAIN */
         main { min-height: calc(100vh - 65px); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 20px;
+                justify-content: space-between;
+            }
+
+            .hamburger { display: flex; }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                background: #1a2740;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                padding: 15px 20px 20px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a {
+                margin-left: 0;
+                padding: 10px 0;
+                font-size: 15px;
+                width: 100%;
+                border-bottom: 1px solid #2c3e50;
+            }
+            .nav-links a:last-child { border-bottom: none; }
+            .nav-links .btn-register {
+                margin-left: 0;
+                margin-top: 10px;
+                text-align: center;
+                width: 100%;
+            }
+
+            footer { padding: 30px 20px; }
+            .footer-grid { flex-direction: column; gap: 20px; }
+        }
     </style>
 </head>
 <body>
-    <nav style="justify-content: flex-end;">
-      <div class="nav-links">
+    <nav>
+      <a href="/" class="logo">Chekla <span>College</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
         <a href="/">Home</a>
         <a href="/courses/">Courses</a>
         <a href="/admissions/">Admissions</a>
@@ -106,7 +176,7 @@
         <a href="/register/">Exam Registration</a>
         <a href="/student-login/">Student Portal</a>
       </div>
-    </nav>  
+    </nav>
 
     <main>
         {% block content %}{% endblock %}
@@ -128,9 +198,9 @@
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
-                <p> Chekla College, Pune, Maharashtra</p>
-                <p> +91 9774291089</p>
-                <p> cheklacoe@gmail.com</p>
+                <p>Chekla College, Pune, Maharashtra</p>
+                <p>+91 9774291089</p>
+                <p>cheklacoe@gmail.com</p>
             </div>
             <div class="footer-col">
                 <h4>Exam</h4>
@@ -142,14 +212,22 @@
             <p>© 2026 Chekla College of Engineering | All rights reserved</p>
         </div>
     </footer>
+
     <script>
-    const currentPath = window.location.pathname;
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        if (link.getAttribute('href') === currentPath) {
-            link.style.color = '#4fc3f7';
-            link.style.borderBottom = '2px solid #4fc3f7';
-        }
-    });
-   </script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navLinks.classList.toggle('open');
+        });
+
+        const currentPath = window.location.pathname;
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.style.color = '#4fc3f7';
+                link.style.borderBottom = '2px solid #4fc3f7';
+            }
+        });
+    </script>
 </body>
 </html>
